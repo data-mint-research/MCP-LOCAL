@@ -1,0 +1,17 @@
+logging:
+  structure:
+    base_dir: logs/
+    categories:
+      - system
+      - interaction
+      - error
+      - agent
+      - tool
+  format:
+    type: jsonl
+    timestamp: iso8601
+  rotation:
+    policy: daily
+    max_file_size: 10MB
+    retention_days: 30
+    compress_after_days: 7

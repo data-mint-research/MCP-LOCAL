@@ -1,0 +1,10 @@
+capabilities:
+  mcp_agent_interaction_engine:
+    - dialog_management
+    - user_input_handling
+  mcp_host_memory_store:
+    - memory_write
+    - memory_read
+  mcp_tool_executor:
+    - tool_execution
+    - shell_access

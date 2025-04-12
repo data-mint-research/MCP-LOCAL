@@ -1,0 +1,13 @@
+---
+
+### 📄 `MCP-LOCAL/config/mcp_register.yaml`
+
+```yaml
+units:
+  - id: interaction_engine
+    type: mcp_agent
+    path: mcp_units/mcp_agent_interaction_engine/dialog_flow.py
+
+  - id: memory_store
+    type: mcp_host
+    path: mcp_units/mcp_host_memory_store/memory_handler.py

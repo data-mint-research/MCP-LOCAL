@@ -1,0 +1,20 @@
+{
+  "active_goal": "ZIEL_01",
+  "user_input": "Was kann ich tun?",
+  "agent_status": "waiting",
+  "current_task": "ZIELFINDUNG",
+  "turn_id": 4,
+  "last_response": "Du kannst ein Ziel formulieren.",
+  "context_history": [
+    {
+      "turn": 3,
+      "user_input": "Ich suche ein Ziel",
+      "agent_response": "Was möchtest du erreichen?"
+    },
+    {
+      "turn": 4,
+      "user_input": "Was kann ich tun?",
+      "agent_response": "Du kannst ein Ziel formulieren."
+    }
+  ]
+}

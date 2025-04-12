@@ -1,0 +1,9 @@
+permissions:
+  default:
+    access: restricted
+  mcp_agent_interaction_engine:
+    access: full
+  mcp_host_memory_store:
+    access: write
+  mcp_tool_executor:
+    access: read

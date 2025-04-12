@@ -1,0 +1,18 @@
+structure:
+  mcp_units:
+    naming: mcp_<type>_<name>
+    required_types: [mcp_host, mcp_agent, mcp_tool, mcp_bridge]
+    naming_rule: ^mcp_(host|agent|tool|bridge)_[a-z0-9_]+$
+  runtime_state:
+    required_files:
+      - state_context.json
+      - state_status.json
+      - state_memory.json
+      - state_policy.json
+  logs:
+    subdirs:
+      - system
+      - interaction
+      - error
+      - agent
+      - tool

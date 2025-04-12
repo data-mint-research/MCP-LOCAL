@@ -1,0 +1,25 @@
+policy_id: default
+description: Standard-Agentenverhalten mit validierungsorientierter Dialogsteuerung.
+version: 1.0.0
+
+response_style:
+  tone: sachlich
+  formality: direkt
+  language: deutsch
+
+behaviors:
+  confirm_on_goal_change: true
+  include_turn_summary: false
+  suggest_next_step: true
+
+fallback:
+  on_error: "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."
+  unknown_input: "Das habe ich nicht verstanden. Kannst du das bitte anders formulieren?"
+
+rules:
+  - id: R001
+    description: Jede Eingabe soll kontextbezogen beantwortet werden.
+    active: true
+  - id: R002
+    description: Bei Zieländerung soll um Bestätigung gefragt werden.
+    active: true

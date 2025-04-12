@@ -1,0 +1,10 @@
+agents:
+  mcp_agent_interaction_engine:
+    description: Zentrale Dialogsteuerung
+    type: mcp_agent
+    singleton: true
+    required: true
+    capabilities:
+      - dialog_management
+      - user_input_handling
+    access_level: full

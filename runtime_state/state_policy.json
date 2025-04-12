@@ -1,0 +1,7 @@
+{
+    "active_policy": "default",
+    "source_file": "config/policies/agent.policy.yaml",
+    "version": "1.0.0",
+    "applied_at": "2025-04-12T14:00:00Z",
+    "description": "Standard-Agentenverhalten mit validierungsorientierter Dialogsteuerung."
+  }

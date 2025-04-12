@@ -1,0 +1,33 @@
+policy_id: tools_default
+description: Standardrichtlinie für die Ausführung systeminterner Tools.
+version: 1.0.0
+
+execution:
+  allow_shell: true
+  sandbox_mode: true
+  timeout_seconds: 10
+  max_output_lines: 50
+
+access_control:
+  allowed_callers:
+    - mcp_agent_interaction_engine
+  denied_commands:
+    - "rm"
+    - "shutdown"
+    - "reboot"
+
+logging:
+  enabled: true
+  level: full
+  log_path: logs/tool/
+
+rules:
+  - id: T001
+    description: Nur registrierte Units dürfen Tools aufrufen.
+    active: true
+  - id: T002
+    description: Gefährliche Shell-Kommandos sind blockiert.
+    active: true
+  - id: T003
+    description: Tool-Ausgaben werden aus Sicherheitsgründen gekürzt.
+    active: true

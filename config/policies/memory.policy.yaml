@@ -1,0 +1,27 @@
+policy_id: memory_default
+description: Standard-Policy für Memory-Verwaltung in einem Einagentensystem.
+version: 1.0.0
+
+storage:
+  persistence: true
+  auto_load: true
+  file_path: runtime_state/state_memory.json
+
+access_control:
+  allow_external_read: true
+  allow_external_write: false
+  whitelist_units:
+    - mcp_agent_interaction_engine
+
+expiration:
+  default_ttl: 3600         # in Sekunden (1h)
+  cleanup_on_startup: true
+  notify_on_expiry: false
+
+rules:
+  - id: M001
+    description: Memory-Einträge dürfen nur vom Hauptagenten geschrieben werden.
+    active: true
+  - id: M002
+    description: Persistenz ist standardmäßig aktiviert.
+    active: true

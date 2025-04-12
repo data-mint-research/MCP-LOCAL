@@ -1,0 +1,18 @@
+{
+    "units": {
+      "interaction_engine": {
+        "state": "active",
+        "uptime": "55s",
+        "last_ping": "2025-04-12T14:05:00Z",
+        "health": "ok"
+      },
+      "memory_store": {
+        "state": "active",
+        "uptime": "12s",
+        "last_ping": "2025-04-12T14:05:01Z",
+        "health": "ok"
+      }
+    },
+    "overall_status": "running",
+    "last_updated": "2025-04-12T14:05:03Z"
+  }

@@ -1,0 +1,46 @@
+naming:
+
+  unit_prefix: mcp_
+
+  allowed_types:
+    - host
+    - agent
+    - tool
+    - bridge
+
+  unit_pattern:
+    description: Alle ausführbaren Units folgen dem Muster mcp_<type>_<name>
+    regex: ^mcp_(host|agent|tool|bridge)_[a-z0-9_]+$
+    example: mcp_host_llm_infer
+
+  file_extensions:
+    python: .py
+    yaml: .yaml
+    json: .json
+    shell: .sh
+
+  special_files:
+    mcp_register: mcp_register.yaml
+    capabilities: mcp_capabilities.yaml
+    permissions: mcp_permissions.json
+
+  runtime_state_files:
+    - state_context.json
+    - state_status.json
+    - state_memory.json
+    - state_policy.json
+
+  logs_subdirs:
+    - system
+    - interaction
+    - error
+    - agent
+    - tool
+
+  rules_files:
+    suffix: .rules.yaml
+    naming_rule: ^[a-z0-9_]+\.rules\.yaml$
+    examples:
+      - structure.rules.yaml
+      - naming.rules.yaml
+      - agents.rules.yaml

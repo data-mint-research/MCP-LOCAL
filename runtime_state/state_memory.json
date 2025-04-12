@@ -1,0 +1,23 @@
+{
+    "facts": {
+      "user_name": "Anna",
+      "project_stage": "Definition"
+    },
+    "goal_current": "ZIEL_01",
+    "notes": [
+      "Der Nutzer möchte ein neues System starten.",
+      "Agent schlägt Zieldefinition vor."
+    ],
+    "history": [
+      {
+        "turn": 3,
+        "input": "Ich suche ein Ziel",
+        "output": "Was möchtest du erreichen?"
+      },
+      {
+        "turn": 4,
+        "input": "Was kann ich tun?",
+        "output": "Du kannst ein Ziel formulieren."
+      }
+    ]
+  }
