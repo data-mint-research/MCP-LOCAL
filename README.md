@@ -24,12 +24,37 @@ units:
     path: mcp_units/mcp_agent_interaction_engine/dialog_flow.py
 ```
 
+## Installation
+
+Das Projekt kann mit pip installiert werden:
+
+### Standardinstallation
+
+```bash
+pip install .
+```
+
+### Installation mit Entwicklungstools
+
+```bash
+pip install .[dev]
+```
+
+### Tests ausführen
+
+```bash
+pytest
+```
+
+Die Konfiguration für die Installation und Tests befindet sich in der `pyproject.toml`-Datei im Projektverzeichnis.
+
 ## Verzeichnisstruktur
 
 ```plaintext
 MCP-LOCAL/
 ├── README.md
 ├── project.rules.yaml
+├── pyproject.toml
 │
 ├── config/
 │   ├── mcp_register.yaml

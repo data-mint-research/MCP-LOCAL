@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "description": "Laufzeitfreigaben für MCP-Komponenten",
+    "permissions": {
+      "mcp_agent_interaction_engine": {
+        "can_read": ["memory_store", "context"],
+        "can_write": ["memory_store"],
+        "can_execute": ["tool_executor"]
+      },
+      "tool_executor": {
+        "can_read": [],
+        "can_write": [],
+        "can_execute": []
+      }
+    }
+  }

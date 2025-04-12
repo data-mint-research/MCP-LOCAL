@@ -1,0 +1,10 @@
+# project.rules.yaml
+# Optionaler Einstiegspunkt für alle Regeldateien in config/rules/
+
+includes:
+  - config/rules/naming.rules.yaml
+  - config/rules/structure.rules.yaml
+  - config/rules/capabilities.rules.yaml
+  - config/rules/agents.rules.yaml
+  - config/rules/permissions.rules.yaml
+  - config/rules/logging.rules.yaml
