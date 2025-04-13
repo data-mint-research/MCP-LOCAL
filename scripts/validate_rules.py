@@ -5,7 +5,13 @@
 # 📅 Erstellt: 2025-04-13
 # 🧱 Benötigte Pakete: os, re, yaml, json
 # 🧪 Testbar: ❌
+# HINWEIS (MCP): Dieses Skript ist ein wichtiges Werkzeug des MCP-Compliance-Frameworks,
+# HINWEIS (MCP): das die Einhaltung der MCP-Regeln überprüft und automatisch Korrekturen vornimmt.
+# HINWEIS (MCP): Es validiert und korrigiert die Struktur, Namenskonventionen, Berechtigungen und
+# HINWEIS (MCP): Agentenkonfigurationen gemäß den definierten Regeln in den entsprechenden YAML-Dateien.
+# HINWEIS (MCP): Das Skript stellt sicher, dass das MCP-System den Compliance-Anforderungen entspricht.
 
+import os
 import os
 import re
 import yaml

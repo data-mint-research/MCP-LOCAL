@@ -5,7 +5,13 @@
 # 📅 Erstellt: 2025-04-13
 # 🧱 Benötigte Pakete: json, os
 # 🧪 Testbar: ❌
+# HINWEIS (MCP): Dieser Dienst implementiert den Memory-Store des MCP-Systems.
+# HINWEIS (MCP): Er bietet Funktionen zum Speichern und Abrufen von Zustandsdaten
+# HINWEIS (MCP): und persistiert diese in einer JSON-Datei im runtime_state-Verzeichnis.
+# HINWEIS (MCP): Der Dienst wird von anderen MCP-Komponenten genutzt, um Zustandsinformationen
+# HINWEIS (MCP): zwischen Anfragen zu speichern und abzurufen.
 
+import json
 import json
 import os
 import time

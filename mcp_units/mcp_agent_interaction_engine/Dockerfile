@@ -1,4 +1,9 @@
+# HINWEIS (MCP): Diese Dockerfile erstellt das Container-Image für die Agent-Interaktions-Engine.
+# HINWEIS (MCP): Die Engine ist verantwortlich für die Verarbeitung des Dialogflusses und
+# HINWEIS (MCP): kommuniziert mit anderen MCP-Komponenten über den Standardport 5000.
+# HINWEIS (MCP): Sie ist Teil des MCP-Agent-Subsystems und verarbeitet Benutzereingaben.
 
+FROM python:3.11-slim
 FROM python:3.11-slim
 
 # Install git

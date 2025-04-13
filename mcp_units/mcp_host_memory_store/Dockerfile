@@ -1,4 +1,9 @@
+# HINWEIS (MCP): Diese Dockerfile erstellt das Container-Image für den Memory-Store-Dienst.
+# HINWEIS (MCP): Der Dienst ist verantwortlich für die Speicherung und Verwaltung von Zustandsdaten
+# HINWEIS (MCP): und kommuniziert mit anderen MCP-Komponenten über den Standardport 5000.
+# HINWEIS (MCP): Er ist Teil des MCP-Host-Subsystems und dient als persistenter Speicher für das System.
 
+FROM python:3.11-slim
 FROM python:3.11-slim
 
 # Install git

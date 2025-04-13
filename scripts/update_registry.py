@@ -6,8 +6,15 @@
 # 📅 Erstellt: 2025-04-13
 # 🧱 Benötigte Pakete: os, yaml, sys, re, traceback, pathlib
 # 🧪 Testbar: ❌
+# HINWEIS (MCP): Dieses Skript ist ein zentrales Werkzeug des MCP-Compliance-Frameworks,
+# HINWEIS (MCP): das die MCP-Registrierungsdatei automatisch aktualisiert, indem es das
+# HINWEIS (MCP): mcp_units-Verzeichnis scannt und alle gefundenen MCP-Einheiten registriert.
+# HINWEIS (MCP): Es identifiziert Einheitstypen und IDs basierend auf Verzeichnisnamen und
+# HINWEIS (MCP): findet die Hauptdateien jeder Einheit. Die Registrierung ist ein kritischer
+# HINWEIS (MCP): Schritt für die korrekte Funktion des MCP-Systems.
 
 """
+MCP Registry Updater
 MCP Registry Updater
 
 This script automatically updates the MCP registry (config/mcp_register.yaml)

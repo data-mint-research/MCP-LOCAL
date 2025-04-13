@@ -6,8 +6,13 @@
 # 📅 Erstellt: 2025-04-13
 # 🧱 Benötigte Pakete: os
 # 🧪 Testbar: ❌
+# HINWEIS (MCP): Dieses Skript ist ein Hilfswerkzeug für das MCP-System, das den Inhalt
+# HINWEIS (MCP): der Registrierungsdatei ausgibt und die Anzahl der registrierten Einheiten zählt.
+# HINWEIS (MCP): Es dient zur Überprüfung und Diagnose der MCP-Registrierung und ist Teil
+# HINWEIS (MCP): des MCP-Compliance-Frameworks.
 
 """
+Test script to print the content of the registry file
 Test script to print the content of the registry file
 """
 

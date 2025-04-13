@@ -1,3 +1,8 @@
+# HINWEIS (MCP): Diese Template-Datei definiert die Struktur für Script-Metadaten.
+# HINWEIS (MCP): Sie wird vom add_metadata.py-Skript verwendet, um standardisierte
+# HINWEIS (MCP): Metadaten-Blöcke zu Python- und anderen Skript-Dateien hinzuzufügen.
+# HINWEIS (MCP): Die Platzhalter werden zur Laufzeit durch tatsächliche Werte ersetzt.
+
 # 📄 Script: {filename}
 # 🔧 Zweck: {purpose}
 # 🗂 Pfad: {relative_path}

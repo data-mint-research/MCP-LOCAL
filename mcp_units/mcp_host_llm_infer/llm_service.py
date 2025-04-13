@@ -5,7 +5,13 @@
 # 📅 Erstellt: 2025-04-13
 # 🧱 Benötigte Pakete: Keine externen Pakete
 # 🧪 Testbar: ❌
+# HINWEIS (MCP): Dieser Dienst implementiert den LLM-Inferenzdienst des MCP-Systems.
+# HINWEIS (MCP): Er stellt eine Schnittstelle für Sprachmodell-Inferenzen bereit und
+# HINWEIS (MCP): verarbeitet Textgenerierungsanfragen von anderen MCP-Komponenten.
+# HINWEIS (MCP): In der aktuellen Version ist dies ein Mock-Dienst, der später durch
+# HINWEIS (MCP): eine echte LLM-Integration ersetzt werden kann.
 
+import time
 import time
 import sys
 import os

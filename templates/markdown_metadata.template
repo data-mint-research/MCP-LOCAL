@@ -1,4 +1,9 @@
-<!-- 
+<!--
+HINWEIS (MCP): Diese Template-Datei definiert die Struktur für Markdown-Metadaten.
+HINWEIS (MCP): Sie wird vom add_metadata.py-Skript verwendet, um standardisierte
+HINWEIS (MCP): Metadaten-Blöcke zu Markdown-Dateien hinzuzufügen. Die Platzhalter
+HINWEIS (MCP): werden zur Laufzeit durch tatsächliche Werte ersetzt.
+
 📄 Datei: {filename}
 🔧 Zweck: {purpose}
 👤 Autor: MINT-RESEARCH

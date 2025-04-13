@@ -5,7 +5,12 @@
 # 📅 Erstellt: 2025-04-13
 # 🧱 Benötigte Pakete: datetime
 # 🧪 Testbar: ❌
+# HINWEIS (MCP): Dieser Dienst implementiert die Agent-Interaktions-Engine des MCP-Systems.
+# HINWEIS (MCP): Er verwaltet den Dialogzustand, verarbeitet Benutzereingaben und generiert Antworten.
+# HINWEIS (MCP): Die Engine kommuniziert mit dem LLM-Inferenzdienst für komplexere Antworten
+# HINWEIS (MCP): und mit dem Memory-Store zur Speicherung des Dialogverlaufs.
 
+from datetime import datetime
 from datetime import datetime
 import time
 import sys

@@ -63,12 +63,31 @@ logs/shutdown.log
 
 ## 🧪 Test & Debug
 
+### Komponenten-Status
+
 | Komponente         | Port  | Testaufruf                            |
 |--------------------|-------|----------------------------------------|
 | `interaction_engine` | 8000 | `curl http://localhost:8000/ping`     |
 | `executor`           | 8001 | `curl http://localhost:8001/status`   |
 | `memory_store`       | 8002 | `curl http://localhost:8002/health`   |
 | `llm_infer`          | 8003 | `curl http://localhost:8003/info`     |
+
+### Testabdeckung
+
+Das Projekt enthält Tools zur Messung der Testabdeckung:
+
+```bash
+# Testabdeckung messen und Bericht anzeigen
+python scripts/run_coverage.py
+
+# HTML-Bericht generieren
+python scripts/run_coverage.py --html
+
+# XML-Bericht für CI generieren
+python scripts/run_coverage.py --xml
+```
+
+Detaillierte Informationen zur Testabdeckung finden Sie in der [Testabdeckungs-Dokumentation](docs/test_coverage_guide.md).
 
 > Beispiel: Status aller Dienste nach Start:
 >

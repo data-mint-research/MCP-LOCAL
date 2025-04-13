@@ -5,7 +5,13 @@
 # 📅 Erstellt: 2025-04-13
 # 🧱 Benötigte Pakete: subprocess
 # 🧪 Testbar: ❌
+# HINWEIS (MCP): Dieser Dienst implementiert den Tool-Executor des MCP-Systems.
+# HINWEIS (MCP): Er bietet eine sichere Umgebung für die Ausführung von Shell-Befehlen
+# HINWEIS (MCP): und anderen externen Werkzeugen, die von MCP-Agenten angefordert werden.
+# HINWEIS (MCP): Der Dienst kapselt die Befehlsausführung und gibt die Ergebnisse zurück,
+# HINWEIS (MCP): wodurch eine Isolation zwischen dem Agenten und dem Hostsystem gewährleistet wird.
 
+import subprocess
 import subprocess
 import time
 import sys

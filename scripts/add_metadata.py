@@ -7,6 +7,12 @@
 # 🧱 Benötigte Pakete: os, sys, re, json, datetime
 # 🧪 Testbar: ❌
 
+# HINWEIS (MCP): Dieses Skript ist Teil des MCP-Compliance-Frameworks und fügt
+# HINWEIS (MCP): standardisierte Metadaten-Blöcke zu Dateien hinzu, die noch keine haben.
+# HINWEIS (MCP): Es unterstützt verschiedene Dateitypen (Python, YAML, Markdown, JSON) und
+# HINWEIS (MCP): verwendet Templates aus dem templates-Verzeichnis, um die Metadaten zu generieren.
+# HINWEIS (MCP): Das Skript ist ein wichtiges Werkzeug für die Einhaltung der MCP-Dokumentationsstandards.
+
 import os
 import sys
 import re

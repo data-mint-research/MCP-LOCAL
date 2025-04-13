@@ -1,4 +1,8 @@
 {
+  // HINWEIS (MCP): Diese Template-Datei definiert die Struktur für JSON-Metadaten.
+  // HINWEIS (MCP): Sie wird vom add_metadata.py-Skript verwendet, um standardisierte
+  // HINWEIS (MCP): Metadaten-Blöcke zu JSON-Dateien hinzuzufügen. Die Platzhalter
+  // HINWEIS (MCP): werden zur Laufzeit durch tatsächliche Werte ersetzt.
   "_meta": {
     "file": "{filename}",
     "purpose": "{purpose}",
