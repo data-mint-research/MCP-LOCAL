@@ -1,33 +1,43 @@
 [project]
 name = "mcp-local"
 version = "0.1.0"
-description = "MCP Starterprojekt mit automatischer Unit-Registrierung"
+description = "MCP Starter project with automatic Unit registration"
 authors = [
   { name = "DATA-MINT-RESEARCH", email = "data.mint.research@gmail.com" }
 ]
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.8"
 
 dependencies = [
-  "pyyaml>=6.0",
-  "docker>=6.1.0",
-  "docker-compose>=1.29.2"
+  "pyyaml>=6",
+  "docker>=6.1.0"
 ]
 
 [project.optional-dependencies]
+
+# Entwicklungsumgebung inkl. Build-Tools
 dev = [
+  "pyyaml>=6",
+  "docker>=6.1.0",
   "pytest>=7.0",
   "coverage>=7.0",
-  "pytest-cov>=4.0",
-  "docker>=6.1.0",
-  "docker-compose>=1.29.2"
+  "pytest-cov>=4.0"
 ]
 
 [tool.pytest.ini_options]
 addopts = "-v"
 testpaths = ["tests"]
 
+[tool.setuptools.packages.find]
+include = ["mcp_units"]
+
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+# Devtools outside of pip (for setup script, agents, platform checks)
+[tool.mcp.devtools]
+pnpm = { install = "corepack enable && corepack prepare pnpm@latest --activate", command = "pnpm --version" }
+cargo = { install = "https://sh.rustup.rs", command = "cargo --version" }
+tauri-cli = { install = "cargo install tauri-cli", command = "tauri --version" }

@@ -17,8 +17,8 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-# Change from absolute imports to relative imports
-from .logger import log_event
+# Use absolute imports when running the script directly
+from logger import log_event
 
 # Constants
 CONFIG_DIR = "config"

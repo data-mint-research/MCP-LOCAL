@@ -16,11 +16,11 @@ from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
 import uvicorn
 
-# Change from absolute imports to relative imports
-from .graph_executor import invoke_graph
-from .logger import log_info, log_error
-from .rules_api import include_rules_router
-from .status_api import include_status_router
+# Use absolute imports when running the script directly
+from graph_executor import invoke_graph
+from logger import log_info, log_error
+from rules_api import include_rules_router
+from status_api import include_status_router
 
 # Create FastAPI application
 app = FastAPI(

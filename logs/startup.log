@@ -1,0 +1,48 @@
+╔════════════════════════════════════════════════╗
+║ MCP-LOCAL Enhanced Startup (PHASE 4.2)          ║
+║ Started: 2025-04-13 20:32:13                      ║
+╚════════════════════════════════════════════════╝
+▶ Detected OS: linux
+▶ Checking required tools...
+✅ Node.js found: v20.19.0
+❌ pnpm not found
+❌ Cargo (Rust) not found
+❌ Tauri CLI not found
+✅ Docker found: Docker version 28.0.4, build b8034c0
+
+⚠️ Missing required tools: pnpm cargo tauri
+▶ Installing pnpm...
+Installing pnpm...
+Attempting to install pnpm with user permissions...
+⚠️ Could not install pnpm with user permissions.
+Please run one of the following commands:
+  sudo npm install -g pnpm
+  or
+  npm install -g pnpm --prefix ~/.npm-global && export PATH=~/.npm-global/bin:$PATH
+▶ Installing cargo...
+Installing Rust and Cargo...
+Please run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+▶ Installing tauri...
+Installing Tauri CLI...
+❌ Cargo not found. Please install Rust first.
+⚠️ Some tools are missing. The script will continue with limited functionality.
+⚠️ Please install the missing tools and restart this script for full functionality.
+▶ Starting Docker Desktop...
+✅ Docker is already running.
+▶ Starting MCP services...
+Starting MCP services in Docker mode...
+▶ Starting Docker containers...
+▶ Waiting for services to initialize...
+▶ Checking service status...
+[2025-04-13 20:32:55] 🟢 memory_store läuft unter http://localhost:8002 (Up 5 seconds)
+[2025-04-13 20:32:55] 🟢 llm_infer läuft unter http://localhost:8003 (Up 5 seconds)
+[2025-04-13 20:32:55] 🟢 executor läuft unter http://localhost:8001 (Up 5 seconds)
+[2025-04-13 20:32:55] 🟢 interaction_engine läuft unter http://localhost:8000 (Up 5 seconds)
+[2025-04-13 20:32:55] 🟢 mcp_gateway läuft unter http://localhost:9000 (Up 5 seconds (health: starting))
+
+✅ Alle Docker-Dienste wurden erfolgreich gestartet.
+✅ MCP services started.
+
+Please select Tauri GUI mode:
+1) Development mode (faster startup, live reloading)
+2) Release mode (optimized build)

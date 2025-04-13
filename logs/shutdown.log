@@ -1,16 +1,24 @@
 ╔════════════════════════════════════════════════╗
-║ MCP-LOCAL Shutdown                              ║
-║ Started: 2025-04-13 18:12:35                      ║
+║ MCP-LOCAL Enhanced Shutdown (PHASE 4.2)         ║
+║ Started: 2025-04-13 20:28:58                      ║
 ╚════════════════════════════════════════════════╝
+▶ Detected OS: linux
+▶ Docker Desktop will be stopped completely.
+▶ Stopping Tauri GUI...
+Searching for Tauri processes...
+ℹ️ No Tauri processes found.
+▶ Stopping Docker Desktop...
 ▶ Checking for Docker containers...
 Found running MCP containers:
+memory_store
 llm_infer
 executor
-memory_store
+interaction_engine
 ▶ Stopping all MCP Docker containers...
 ✅ All MCP Docker containers have been stopped successfully.
 ▶ Checking for Python processes...
 ℹ️ No MCP Python processes are running.
+▶ Stopping Docker service...
 
 ✅ MCP-LOCAL system shutdown complete.
 📝 Logs saved to: logs/shutdown.log

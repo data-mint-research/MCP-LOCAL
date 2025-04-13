@@ -10,9 +10,9 @@
 # HINWEIS (MCP): Benutzeranfragen durch den Graph zu verarbeiten.
 
 from typing import Dict
-# Change from absolute imports to relative imports
-from .graph import build_graph
-from .logger import log_event
+# Use absolute imports when running the script directly
+from graph import build_graph
+from logger import log_event
 
 def invoke_graph(user_input: str, policy: dict = {}) -> dict:
     """

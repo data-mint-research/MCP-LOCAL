@@ -4,7 +4,6 @@
 # HINWEIS (MCP): Er ist Teil des MCP-Host-Subsystems und dient als persistenter Speicher für das System.
 
 FROM python:3.11-slim
-FROM python:3.11-slim
 
 # Install git
 RUN apt-get update && apt-get install -y git && apt-get clean
