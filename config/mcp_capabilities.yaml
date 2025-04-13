@@ -1,3 +1,9 @@
+# 📄 Datei: mcp_capabilities.yaml
+# 🔧 Zweck: Konfigurationsdatei für das MCP-System
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 📘 Gültigkeit: required
+# 🧱 Version: 1.0.0
 {
   "_meta": {
     "file": "mcp_capabilities.yaml",
