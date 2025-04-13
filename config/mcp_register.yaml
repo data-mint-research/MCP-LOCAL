@@ -25,3 +25,9 @@ units:
     type: mcp_host
     path: mcp_units/mcp_host_llm_infer/llm_service.py
     entry_file: llm_service.py
+    
+  - id: graph_engine
+    type: mcp_agent
+    path: mcp_units/mcp_agent_interaction_engine/api_gateway.py
+    entry_file: api_gateway.py
+    port: 9000

@@ -62,6 +62,7 @@ start_docker_mode() {
       ["executor"]="8001"
       ["memory_store"]="8002"
       ["llm_infer"]="8003"
+      ["mcp_gateway"]="9000"
     )
 
     # Start services

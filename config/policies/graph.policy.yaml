@@ -1,0 +1,11 @@
+# 📄 Datei: graph.policy.yaml
+# 🔧 Zweck: Richtlinien für die Graph-Engine-Komponente
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 📘 Gültigkeit: required
+# 🧱 Version: 1.0.0
+
+component: graph_engine
+enabled: true
+log_each_step: true
+fallback_on_failure: false
