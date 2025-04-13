@@ -1,3 +1,10 @@
+# 📄 Datei: permissions.rules.yaml
+# 🔧 Zweck: Regelwerk für die MCP-Struktur
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 📘 Gültigkeit: required
+# 🧱 Version: 1.0.0
+
 permissions:
   default:
     access: restricted

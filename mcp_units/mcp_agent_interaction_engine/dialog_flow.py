@@ -1,3 +1,11 @@
+# 📄 Script: dialog_flow.py
+# 🔧 Zweck: Agent-Komponente des MCP-Systems
+# 🗂 Pfad: mcp_units/mcp_agent_interaction_engine/dialog_flow.py
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 🧱 Benötigte Pakete: datetime
+# 🧪 Testbar: ❌
+
 from datetime import datetime
 
 DIALOG_STATE = {

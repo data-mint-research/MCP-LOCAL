@@ -1,3 +1,10 @@
+# 📄 Datei: tool.policy.yaml
+# 🔧 Zweck: Richtlinien für die MCP-Komponenten
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 📘 Gültigkeit: required
+# 🧱 Version: 1.0.0
+
 policy_id: tools_default
 description: Standardrichtlinie für die Ausführung systeminterner Tools.
 version: 1.0.0

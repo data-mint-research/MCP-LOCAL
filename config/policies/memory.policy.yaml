@@ -1,6 +1,21 @@
+# 📄 Datei: memory.policy.yaml
+# 🔧 Zweck: Richtlinien für die MCP-Komponenten
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 📘 Gültigkeit: required
+# 🧱 Version: 1.0.0
+
 policy_id: memory_default
 description: Standard-Policy für Memory-Verwaltung in einem Einagentensystem.
 version: 1.0.0
+
+terms:
+  - id: MT001
+    name: "Speicherrichtlinien"
+    description: "Richtlinien für die Speicherverwaltung im MCP-System"
+    content: "Diese Richtlinie definiert die Standardverhaltensweise für die Speicherverwaltung im MCP-System."
+    last_updated: 2025-04-13
+    acceptance_required: true
 
 storage:
   persistence: true

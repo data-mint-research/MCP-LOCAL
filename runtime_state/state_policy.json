@@ -1,5 +1,12 @@
 {
-    "active_policy": "default",
+  "_meta": {
+    "file": "state_policy.json",
+    "purpose": "Laufzeitstatus des MCP-Systems",
+    "author": "MINT-RESEARCH",
+    "created": "2025-04-13",
+    "version": "1.0.0"
+  },
+  "active_policy": "default",
     "source_file": "config/policies/agent.policy.yaml",
     "version": "1.0.0",
     "applied_at": "2025-04-12T14:00:00Z",

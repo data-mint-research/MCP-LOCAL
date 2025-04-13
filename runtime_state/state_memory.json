@@ -1,5 +1,12 @@
 {
-    "facts": {
+  "_meta": {
+    "file": "state_memory.json",
+    "purpose": "Laufzeitstatus des MCP-Systems",
+    "author": "MINT-RESEARCH",
+    "created": "2025-04-13",
+    "version": "1.0.0"
+  },
+  "facts": {
       "user_name": "Anna",
       "project_stage": "Definition"
     },

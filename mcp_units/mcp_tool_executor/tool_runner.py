@@ -1,3 +1,11 @@
+# 📄 Script: tool_runner.py
+# 🔧 Zweck: Tool-Komponente des MCP-Systems
+# 🗂 Pfad: mcp_units/mcp_tool_executor/tool_runner.py
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 🧱 Benötigte Pakete: subprocess
+# 🧪 Testbar: ❌
+
 import subprocess
 
 def run_shell_command(command):

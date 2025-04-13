@@ -1,4 +1,11 @@
 {
+  "_meta": {
+    "file": "mcp_capabilities.yaml",
+    "purpose": "Konfigurationsdatei für das MCP-System",
+    "author": "MINT-RESEARCH",
+    "created": "2025-04-13",
+    "version": "1.0.0"
+  },
   "active_goal": "ZIEL_01",
   "user_input": "Was kann ich tun?",
   "agent_status": "waiting",

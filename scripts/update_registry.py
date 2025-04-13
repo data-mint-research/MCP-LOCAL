@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+# 📄 Script: update_registry.py
+# 🔧 Zweck: Hilfsskript für das MCP-System
+# 🗂 Pfad: scripts/update_registry.py
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 🧱 Benötigte Pakete: os, yaml, sys, re, traceback, pathlib
+# 🧪 Testbar: ❌
+
 """
 MCP Registry Updater
 

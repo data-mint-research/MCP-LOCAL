@@ -1,5 +1,12 @@
 {
-    "version": "1.0.0",
+  "_meta": {
+    "file": "mcp_permissions.json",
+    "purpose": "Konfigurationsdatei für das MCP-System",
+    "author": "MINT-RESEARCH",
+    "created": "2025-04-13",
+    "version": "1.0.0"
+  },
+  "version": "1.0.0",
     "description": "Laufzeitfreigaben für MCP-Komponenten",
     "permissions": {
       "mcp_agent_interaction_engine": {

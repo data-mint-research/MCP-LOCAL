@@ -1,3 +1,11 @@
+# 📄 Script: validate_rules.py
+# 🔧 Zweck: Hilfsskript für das MCP-System
+# 🗂 Pfad: scripts/validate_rules.py
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 🧱 Benötigte Pakete: os, re, yaml, json
+# 🧪 Testbar: ❌
+
 import os
 import re
 import yaml

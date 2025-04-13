@@ -1,4 +1,11 @@
 #!/bin/bash
+# 📄 Script: start_all.sh
+# 🔧 Zweck: Hilfsskript für das MCP-System
+# 🗂 Pfad: scripts/start_all.sh
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 🧱 Benötigte Pakete: bash
+# 🧪 Testbar: ❌
 
 echo "🚀 Starte alle registrierten MCP-Units..."
 

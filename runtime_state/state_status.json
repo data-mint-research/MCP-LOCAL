@@ -1,5 +1,12 @@
 {
-    "units": {
+  "_meta": {
+    "file": "state_status.json",
+    "purpose": "Laufzeitstatus des MCP-Systems",
+    "author": "MINT-RESEARCH",
+    "created": "2025-04-13",
+    "version": "1.0.0"
+  },
+  "units": {
       "interaction_engine": {
         "state": "active",
         "uptime": "55s",

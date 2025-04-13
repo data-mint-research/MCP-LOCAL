@@ -1,14 +1,23 @@
+# 📄 Datei: structure.rules.yaml
+# 🔧 Zweck: Regelwerk für die MCP-Struktur
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 📘 Gültigkeit: required
+# 🧱 Version: 1.0.0
+
 structure:
   mcp_units:
     naming: mcp_<type>_<name>
     required_types: [mcp_host, mcp_agent, mcp_tool, mcp_bridge]
     naming_rule: ^mcp_(host|agent|tool|bridge)_[a-z0-9_]+$
+
   runtime_state:
     required_files:
       - state_context.json
       - state_status.json
       - state_memory.json
       - state_policy.json
+
   logs:
     subdirs:
       - system
@@ -16,3 +25,57 @@ structure:
       - error
       - agent
       - tool
+
+  metadata_blocks:
+
+    py:
+      required_fields:
+        - "📄 Script"
+        - "🔧 Zweck"
+        - "🗂 Pfad"
+        - "👤 Autor"
+        - "📅 Erstellt"
+        - "🧱 Benötigte Pakete"
+        - "🧪 Testbar"
+      prefix: "#"
+      comment_style: line
+      filetype: .py
+      insert_position: top
+
+    yaml:
+      required_fields:
+        - "📄 Datei"
+        - "🔧 Zweck"
+        - "👤 Autor"
+        - "📅 Erstellt"
+        - "📘 Gültigkeit"
+        - "🧱 Version"
+      prefix: "#"
+      comment_style: line
+      filetype: .yaml
+      insert_position: top
+
+    md:
+      required_fields:
+        - "📄 Datei"
+        - "🔧 Zweck"
+        - "👤 Autor"
+        - "📅 Erstellt"
+        - "📘 Typ"
+      prefix: "<!--"
+      suffix: "-->"
+      comment_style: block
+      filetype: .md
+      insert_position: top
+
+    json:
+      required_fields:
+        - "file"
+        - "purpose"
+        - "author"
+        - "created"
+        - "version"
+      wrapper_key: "_meta"
+      filetype: .json
+      comment_style: object
+      insert_position: top

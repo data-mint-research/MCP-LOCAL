@@ -1,3 +1,11 @@
+# 📄 Script: memory_handler.py
+# 🔧 Zweck: Host-Komponente des MCP-Systems
+# 🗂 Pfad: mcp_units/mcp_host_memory_store/memory_handler.py
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 🧱 Benötigte Pakete: json, os
+# 🧪 Testbar: ❌
+
 import json
 import os
 

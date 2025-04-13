@@ -1,3 +1,11 @@
+<!--
+📄 Datei: README.md
+🔧 Zweck: Projektdokumentation und Anleitung
+👤 Autor: MINT-RESEARCH
+📅 Erstellt: 2025-04-13
+📘 Typ: Dokumentation
+-->
+
 # MCP-LOCAL – MCP-Starterprojekt
 
 Dieses Projekt bildet die vollständige Grundstruktur eines lauffähigen MCP-Agentensystems ab.  

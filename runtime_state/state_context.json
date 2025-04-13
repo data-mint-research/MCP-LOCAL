@@ -1,0 +1,9 @@
+{
+  "_meta": {
+    "file": "state_context.json",
+    "purpose": "Laufzeitstatus des MCP-Systems",
+    "author": "MINT-RESEARCH",
+    "created": "2025-04-13",
+    "version": "1.0.0"
+  }
+}

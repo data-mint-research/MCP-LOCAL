@@ -1,20 +1,23 @@
----
+# 📄 Datei: mcp_register.yaml
+# 🔧 Zweck: Konfigurationsdatei für das MCP-System
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 📘 Gültigkeit: required
+# 🧱 Version: 1.0.0
 
-### 📄 `MCP-LOCAL/config/mcp_register.yaml`
-
-```yaml
 units:
-- id: interaction_engine
-  type: mcp_agent
-  path: mcp_units/mcp_agent_interaction_engine/dialog_flow.py
-- id: executor
-  type: mcp_tool
-  path: mcp_units/mcp_tool_executor/tool_runner.py
-- id: memory_store
-  type: mcp_host
-  path: mcp_units/mcp_host_memory_store/memory_handler.py
-- id: llm_infer
-  type: mcp_host
-  path: mcp_units/mcp_host_llm_infer/llm_service.py
+  - id: interaction_engine
+    type: mcp_agent
+    path: mcp_units/mcp_agent_interaction_engine/dialog_flow.py
 
-```
+  - id: executor
+    type: mcp_tool
+    path: mcp_units/mcp_tool_executor/tool_runner.py
+
+  - id: memory_store
+    type: mcp_host
+    path: mcp_units/mcp_host_memory_store/memory_handler.py
+
+  - id: llm_infer
+    type: mcp_host
+    path: mcp_units/mcp_host_llm_infer/llm_service.py

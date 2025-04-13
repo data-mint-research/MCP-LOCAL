@@ -1,0 +1,8 @@
+{
+  "_meta": {
+    "file": "{filename}",
+    "purpose": "{purpose}",
+    "author": "MINT-RESEARCH",
+    "created": "{today}",
+    "version": "{version}"
+  }

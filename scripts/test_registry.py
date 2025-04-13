@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+# 📄 Script: test_registry.py
+# 🔧 Zweck: Hilfsskript für das MCP-System
+# 🗂 Pfad: scripts/test_registry.py
+# 👤 Autor: MINT-RESEARCH
+# 📅 Erstellt: 2025-04-13
+# 🧱 Benötigte Pakete: os
+# 🧪 Testbar: ❌
+
 """
 Test script to print the content of the registry file
 """
