@@ -2,11 +2,11 @@ Starting in Docker mode...
 ▶ Starting Docker containers...
 ▶ Waiting for services to initialize...
 ▶ Checking service status...
-[2025-04-13 17:08:55] 🟢 memory_store läuft unter http://localhost:8002 (Up 5 seconds)
-[2025-04-13 17:08:55] 🟢 llm_infer läuft unter http://localhost:8003 (Up 5 seconds)
-[2025-04-13 17:08:55] 🟢 executor läuft unter http://localhost:8001 (Up 5 seconds)
-[2025-04-13 17:08:55] 🟢 interaction_engine läuft unter http://localhost:8000 (Up 5 seconds)
-[2025-04-13 17:08:55] 🟢 mcp_gateway läuft unter http://localhost:9000 (Up 5 seconds)
+[2025-04-13 17:40:09] 🟢 memory_store läuft unter http://localhost:8002 (Up 5 seconds)
+[2025-04-13 17:40:09] 🟢 llm_infer läuft unter http://localhost:8003 (Up 5 seconds)
+[2025-04-13 17:40:09] 🟢 executor läuft unter http://localhost:8001 (Up 5 seconds)
+[2025-04-13 17:40:10] 🟢 interaction_engine läuft unter http://localhost:8000 (Up 5 seconds)
+[2025-04-13 17:40:10] 🟢 mcp_gateway läuft unter http://localhost:9000 (Up 5 seconds)
 
 ✅ Alle Docker-Dienste wurden erfolgreich gestartet.
 📝 Logs gespeichert unter: logs/docker_startup.log

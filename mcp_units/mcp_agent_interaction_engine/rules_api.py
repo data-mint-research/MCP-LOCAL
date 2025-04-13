@@ -17,9 +17,9 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-# Direct imports since all files are in the same directory
-from runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
-from logger import log_event
+# Change from direct imports to absolute imports
+from mcp_units.mcp_agent_interaction_engine.runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
+from mcp_units.mcp_agent_interaction_engine.logger import log_event
 
 # Create a router for the rules API
 router = APIRouter()
@@ -207,39 +207,8 @@ async def check_policy(request: PolicyCheckRequest):
             }
         )
 
-@router.exception_handler(HTTPException)
-async def http_exception_handler(request: Request, exc: HTTPException):
-    """Custom exception handler for HTTP exceptions."""
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={
-            "valid": False,
-            "violations": [f"Error: {exc.detail}"],
-            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "duration_ms": 0
-        }
-    )
-
-@router.exception_handler(Exception)
-async def general_exception_handler(request: Request, exc: Exception):
-    """General exception handler for unexpected errors."""
-    error_message = str(exc)
-    log_event(
-        unit="rules_api",
-        level="ERROR",
-        event="UNHANDLED_ERROR",
-        message=f"Unhandled exception: {error_message}"
-    )
-    
-    return JSONResponse(
-        status_code=500,
-        content={
-            "valid": False,
-            "violations": [f"Internal server error: {error_message}"],
-            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "duration_ms": 0
-        }
-    )
+# Exception handlers are defined in the include_rules_router function
+# to be added to the FastAPI app, not the router
 
 # Function to include the router in the main FastAPI app
 def include_rules_router(app):
@@ -250,3 +219,38 @@ def include_rules_router(app):
         app: The FastAPI application instance
     """
     app.include_router(router)
+    
+    # Add exception handlers to the FastAPI app
+    @app.exception_handler(HTTPException)
+    async def http_exception_handler(request: Request, exc: HTTPException):
+        """Custom exception handler for HTTP exceptions."""
+        return JSONResponse(
+            status_code=exc.status_code,
+            content={
+                "valid": False,
+                "violations": [f"Error: {exc.detail}"],
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "duration_ms": 0
+            }
+        )
+
+    @app.exception_handler(Exception)
+    async def general_exception_handler(request: Request, exc: Exception):
+        """General exception handler for unexpected errors."""
+        error_message = str(exc)
+        log_event(
+            unit="rules_api",
+            level="ERROR",
+            event="UNHANDLED_ERROR",
+            message=f"Unhandled exception: {error_message}"
+        )
+        
+        return JSONResponse(
+            status_code=500,
+            content={
+                "valid": False,
+                "violations": [f"Internal server error: {error_message}"],
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "duration_ms": 0
+            }
+        )

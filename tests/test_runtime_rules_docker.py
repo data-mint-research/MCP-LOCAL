@@ -13,10 +13,18 @@ import sys
 import pytest
 import yaml
 from typing import Dict, Any
+# Check if we're running in Docker
+import platform
+is_docker = os.path.exists('/.dockerenv')
 
-# Import directly from the app directory
-sys.path.append("/app")
-from runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
+# Import the module differently based on environment
+if is_docker:
+    # Import directly from the app directory when running in Docker
+    sys.path.append("/app")
+    from runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
+else:
+    # Import using the full package path when running locally
+    from mcp_units.mcp_agent_interaction_engine.runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
 
 def load_test_policy(policy_file: str) -> Dict[str, Any]:
     """Load a policy file for testing."""
@@ -26,7 +34,8 @@ def load_test_policy(policy_file: str) -> Dict[str, Any]:
 def test_valid_policy():
     """Test that a valid policy passes validation."""
     # Load a known valid policy
-    policy = load_test_policy("/app/config/policies/graph.policy.yaml")
+    policy_path = "/app/config/policies/graph.policy.yaml" if is_docker else "config/policies/graph.policy.yaml"
+    policy = load_test_policy(policy_path)
     
     # Check policy against rules
     violations = check_policy_against_rules(policy)
@@ -74,10 +83,12 @@ def test_invalid_policy():
 def test_specific_rule_files():
     """Test checking against specific rule files."""
     # Load a policy
-    policy = load_test_policy("/app/config/policies/graph.policy.yaml")
+    policy_path = "/app/config/policies/graph.policy.yaml" if is_docker else "config/policies/graph.policy.yaml"
+    policy = load_test_policy(policy_path)
     
     # Check against only the structure rules
-    rule_files = ["/app/config/rules/structure.rules.yaml"]
+    rule_path = "/app/config/rules/structure.rules.yaml" if is_docker else "config/rules/structure.rules.yaml"
+    rule_files = [rule_path]
     violations = check_policy_against_rules(policy, rule_files)
     
     # Should validate against only the specified rule file

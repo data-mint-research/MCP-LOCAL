@@ -10,7 +10,8 @@
 # HINWEIS (MCP): Benutzeranfragen durch den Graph zu verarbeiten.
 
 from typing import Dict
-from .graph import build_graph
+# Change from relative imports to absolute imports
+from mcp_units.mcp_agent_interaction_engine.graph import build_graph
 
 def invoke_graph(user_input: str, policy: dict = {}) -> dict:
     """

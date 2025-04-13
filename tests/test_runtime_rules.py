@@ -50,7 +50,7 @@ def test_invalid_policy():
     """Test that an invalid policy fails validation."""
     # Create an invalid policy
     policy = {
-        "component": "invalid_component",
+        "component": "INVALID-COMPONENT-NAME!@#",  # Invalid characters
         "enabled": True
     }
     

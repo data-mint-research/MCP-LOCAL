@@ -16,8 +16,10 @@ from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
 import uvicorn
 
-from .graph_executor import invoke_graph
-from .logger import log_info, log_error
+# Change from relative imports to absolute imports
+from mcp_units.mcp_agent_interaction_engine.graph_executor import invoke_graph
+from mcp_units.mcp_agent_interaction_engine.logger import log_info, log_error
+from mcp_units.mcp_agent_interaction_engine.rules_api import include_rules_router
 
 # Create FastAPI application
 app = FastAPI(
@@ -25,6 +27,9 @@ app = FastAPI(
     description="API Gateway for the MCP Agent Interaction Engine",
     version="1.0.0"
 )
+
+# Include the rules router
+include_rules_router(app)
 
 # Define request and response models
 class InferRequest(BaseModel):
