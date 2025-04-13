@@ -17,9 +17,9 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-# Change from direct imports to absolute imports
-from mcp_units.mcp_agent_interaction_engine.runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
-from mcp_units.mcp_agent_interaction_engine.logger import log_event
+# Change from absolute imports to relative imports
+from runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
+from logger import log_event
 
 # Create a router for the rules API
 router = APIRouter()
@@ -61,7 +61,7 @@ async def list_rules():
     log_event(
         unit="rules_api",
         level="INFO",
-        event="API_REQUEST",
+        event="rules_list_requested",
         message="Received request to list rules"
     )
     
@@ -108,7 +108,7 @@ async def list_rules():
         log_event(
             unit="rules_api",
             level="INFO",
-            event="API_RESPONSE",
+            event="rules_list_completed",
             message="Successfully listed rules",
             rule_count=len(rules)
         )
@@ -121,8 +121,9 @@ async def list_rules():
         log_event(
             unit="rules_api",
             level="ERROR",
-            event="API_ERROR",
-            message=f"Error listing rules: {error_message}"
+            event="rules_list_failed",
+            message=f"Error listing rules: {error_message}",
+            error=error_message
         )
         
         # Return error response
@@ -146,7 +147,7 @@ async def check_policy(request: PolicyCheckRequest):
     log_event(
         unit="rules_api",
         level="INFO",
-        event="API_REQUEST",
+        event="policy_check_requested",
         message="Received policy check request",
         policy_size=len(str(request.policy)),
         has_specific_rules=bool(request.rule_files)
@@ -173,7 +174,7 @@ async def check_policy(request: PolicyCheckRequest):
         log_event(
             unit="rules_api",
             level="INFO",
-            event="API_RESPONSE",
+            event="policy_check_completed",
             message="Successfully checked policy against rules",
             valid=response.valid,
             violation_count=len(violations),
@@ -191,8 +192,9 @@ async def check_policy(request: PolicyCheckRequest):
         log_event(
             unit="rules_api",
             level="ERROR",
-            event="API_ERROR",
+            event="policy_check_failed",
             message=f"Error checking policy against rules: {error_message}",
+            error=error_message,
             duration_ms=duration_ms
         )
         
@@ -241,8 +243,9 @@ def include_rules_router(app):
         log_event(
             unit="rules_api",
             level="ERROR",
-            event="UNHANDLED_ERROR",
-            message=f"Unhandled exception: {error_message}"
+            event="unhandled_exception",
+            message=f"Unhandled exception: {error_message}",
+            error=error_message
         )
         
         return JSONResponse(

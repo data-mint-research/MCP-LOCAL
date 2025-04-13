@@ -10,8 +10,9 @@
 # HINWEIS (MCP): Benutzeranfragen durch den Graph zu verarbeiten.
 
 from typing import Dict
-# Change from relative imports to absolute imports
-from mcp_units.mcp_agent_interaction_engine.graph import build_graph
+# Change from absolute imports to relative imports
+from graph import build_graph
+from logger import log_event
 
 def invoke_graph(user_input: str, policy: dict = {}) -> dict:
     """
@@ -24,5 +25,44 @@ def invoke_graph(user_input: str, policy: dict = {}) -> dict:
     Returns:
         The final state after graph execution
     """
-    state = {"input": user_input, "policy": policy}
-    return build_graph().invoke(state)
+    # Log the graph invocation
+    log_event(
+        unit="graph_executor",
+        level="INFO",
+        event="graph_invocation_started",
+        message="Starting graph execution",
+        input_length=len(user_input),
+        has_policy=bool(policy)
+    )
+    
+    try:
+        # Prepare the initial state
+        state = {"input": user_input, "policy": policy}
+        
+        # Invoke the graph
+        result = build_graph().invoke(state)
+        
+        # Log successful execution
+        log_event(
+            unit="graph_executor",
+            level="INFO",
+            event="graph_invocation_completed",
+            message="Graph execution completed successfully",
+            output_length=len(result.get("output", "")),
+            nodes_visited=len(result.get("nodes_visited", []))
+        )
+        
+        return result
+        
+    except Exception as e:
+        # Log error
+        log_event(
+            unit="graph_executor",
+            level="ERROR",
+            event="graph_invocation_failed",
+            message=f"Error during graph execution: {str(e)}",
+            error=str(e)
+        )
+        
+        # Re-raise the exception
+        raise

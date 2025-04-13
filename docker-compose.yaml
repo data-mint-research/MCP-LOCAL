@@ -48,3 +48,8 @@ services:
     environment:
       - PORT=9000
     command: python api_gateway.py
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/mcp/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

@@ -14,7 +14,9 @@ import os
 import sys
 import argparse
 import yaml
+import json
 import logging
+import requests
 from typing import Dict, List, Any, Optional
 
 # Add the parent directory to the Python path to import the module
@@ -62,6 +64,24 @@ Examples:
     # Create the 'rules' command group
     rules_parser = subparsers.add_parser('rules', help='Operations related to rules')
     rules_subparsers = rules_parser.add_subparsers(dest='command', help='Rules command')
+    
+    # Create the 'status' command
+    status_parser = subparsers.add_parser('status', help='Get MCP system status')
+    
+    # Create the 'logs' command
+    logs_parser = subparsers.add_parser('logs', help='Get logs for a specific unit')
+    logs_parser.add_argument(
+        '--unit',
+        required=True,
+        help='The unit to get logs for'
+    )
+    
+    # Create the 'state' command
+    state_parser = subparsers.add_parser('state', help='Get state for a specific area')
+    state_parser.add_argument(
+        'area',
+        help='The area to get state for (e.g., policy, context, memory)'
+    )
     
     # Create the 'check' command under 'rules'
     check_parser = rules_subparsers.add_parser('check', help='Check a policy against rules')
@@ -195,6 +215,119 @@ def handle_list_command(args: argparse.Namespace) -> int:
     except Exception as e:
         print(f"Unexpected error: {str(e)}")
         return 1
+def handle_status_command() -> int:
+    """
+    Handle the 'status' command.
+    
+    Returns:
+        Exit code (0 for success, non-zero for failure)
+    """
+    try:
+        # Call the status API
+        response = requests.get("http://localhost:9000/mcp/status")
+        
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the response
+            data = response.json()
+            
+            # Print the results
+            print(f"MCP Status - {data.get('count', 0)} units registered:")
+            for i, unit in enumerate(data.get('units', []), 1):
+                print(f"  {i}. {unit.get('id')} (Type: {unit.get('type')})")
+                print(f"     Path: {unit.get('path')}")
+                if unit.get('port'):
+                    print(f"     Port: {unit.get('port')}")
+                print()
+            
+            return 0
+        else:
+            # Print error message
+            error_data = response.json()
+            print(f"Error: {error_data.get('error', 'Unknown error')}")
+            return 1
+            
+    except requests.RequestException as e:
+        print(f"Error connecting to MCP API: {str(e)}")
+        return 1
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
+        return 1
+
+def handle_logs_command(args: argparse.Namespace) -> int:
+    """
+    Handle the 'logs' command.
+    
+    Args:
+        args: Command-line arguments
+        
+    Returns:
+        Exit code (0 for success, non-zero for failure)
+    """
+    try:
+        # Call the logs API
+        response = requests.get(f"http://localhost:9000/mcp/logs?unit={args.unit}")
+        
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the response
+            data = response.json()
+            
+            # Print the results
+            print(f"Logs for unit '{data.get('unit')}' - {data.get('count', 0)} entries:")
+            for i, log in enumerate(data.get('logs', []), 1):
+                print(f"  {i}. {log}")
+            
+            return 0
+        else:
+            # Print error message
+            error_data = response.json()
+            print(f"Error: {error_data.get('error', 'Unknown error')}")
+            return 1
+            
+    except requests.RequestException as e:
+        print(f"Error connecting to MCP API: {str(e)}")
+        return 1
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
+        return 1
+
+def handle_state_command(args: argparse.Namespace) -> int:
+    """
+    Handle the 'state' command.
+    
+    Args:
+        args: Command-line arguments
+        
+    Returns:
+        Exit code (0 for success, non-zero for failure)
+    """
+    try:
+        # Call the state API
+        response = requests.get(f"http://localhost:9000/mcp/state/{args.area}")
+        
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the response
+            data = response.json()
+            
+            # Print the results
+            print(f"State for area '{args.area}':")
+            print(json.dumps(data, indent=2))
+            
+            return 0
+        else:
+            # Print error message
+            error_data = response.json()
+            print(f"Error: {error_data.get('error', 'Unknown error')}")
+            return 1
+            
+    except requests.RequestException as e:
+        print(f"Error connecting to MCP API: {str(e)}")
+        return 1
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
+        return 1
 
 def main() -> int:
     """
@@ -225,6 +358,18 @@ def main() -> int:
         # Handle the 'list' command
         elif args.command == 'list':
             return handle_list_command(args)
+    
+    # Handle the 'status' command
+    elif args.command_group == 'status':
+        return handle_status_command()
+    
+    # Handle the 'logs' command
+    elif args.command_group == 'logs':
+        return handle_logs_command(args)
+    
+    # Handle the 'state' command
+    elif args.command_group == 'state':
+        return handle_state_command(args)
     
     # If we get here, the command wasn't recognized
     print(f"Unknown command: {args.command_group} {getattr(args, 'command', '')}")
