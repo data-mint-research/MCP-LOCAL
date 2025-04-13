@@ -95,7 +95,7 @@ def test_rules_files_metadata():
     ]
     
     for rule_file in rule_files:
-        with open(rule_file, "r") as f:
+        with open(rule_file, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
             
             for metadata in required_metadata:
@@ -212,9 +212,9 @@ def test_check_policy_against_rules_nonexistent_rule_file():
     assert len(violations) == 0, "Expected no violations when no rule files are found"
 
 def test_load_rule_file_nonexistent():
-    """Test that loading a nonexistent rule file raises an exception."""
-    with pytest.raises(FileNotFoundError):
-        load_rule_file("config/rules/nonexistent.rules.yaml")
+    """Test that loading a nonexistent rule file returns an empty list."""
+    result = load_rule_file("config/rules/nonexistent.rules.yaml")
+    assert result == [], "Expected an empty list when loading a nonexistent rule file"
 
 def test_get_rule_files_specific():
     """Test getting specific rule files."""

@@ -18,7 +18,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 # Change from absolute imports to relative imports
-from logger import log_event
+from .logger import log_event
 
 # Constants
 CONFIG_DIR = "config"

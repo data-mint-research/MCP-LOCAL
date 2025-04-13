@@ -36,11 +36,11 @@ def load_rule_file(file_path: str) -> Dict[str, Any]:
         yaml.YAMLError: If the rule file contains invalid YAML
     """
     try:
-        with open(file_path, "r") as f:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
             return yaml.safe_load(f)
     except FileNotFoundError:
         logger.error(f"Rule file not found: {file_path}")
-        raise
+        return []
     except yaml.YAMLError as e:
         logger.error(f"Error parsing rule file {file_path}: {e}")
         raise

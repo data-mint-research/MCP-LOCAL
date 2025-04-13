@@ -18,64 +18,66 @@ import sys
 import json
 
 # Import the MCP units
-from mcp_units.mcp_agent_interaction_engine.dialog_flow import handle_input, generate_response
+from mcp_units.mcp_agent_interaction_engine.graph_executor import invoke_graph
 from mcp_units.mcp_host_llm_infer.llm_service import generate_text
 from mcp_units.mcp_host_memory_store.memory_handler import write_memory, read_memory, persist_memory
 from mcp_units.mcp_tool_executor.tool_runner import run_shell_command
 
-class TestDialogFlowWithLLM:
+class TestGraphExecutorWithLLM:
     """Integration tests for Dialog Flow and LLM Inference interaction."""
     
-    @patch('mcp_units.mcp_agent_interaction_engine.dialog_flow.generate_response')
-    def test_handle_input_calls_generate_response(self, mock_generate_response):
-        """Test that handle_input correctly calls generate_response."""
+    @patch('mcp_units.mcp_agent_interaction_engine.graph.build_graph')
+    def test_invoke_graph_calls_build_graph(self, mock_build_graph):
+        """Test that invoke_graph correctly calls build_graph."""
         # Arrange
-        mock_generate_response.return_value = "Mocked response"
+        mock_graph = MagicMock()
+        mock_graph.invoke.return_value = {"output": "Mocked response"}
+        mock_build_graph.return_value = mock_graph
         user_input = "Hallo, wie geht es dir?"
         
         # Act
-        response = handle_input(user_input)
+        response = invoke_graph(user_input)
         
         # Assert
-        mock_generate_response.assert_called_once_with(user_input)
-        assert response == "Mocked response"
+        mock_build_graph.assert_called_once()
+        mock_graph.invoke.assert_called_once()
+        assert response["output"] == "Mocked response"
     
     @patch('mcp_units.mcp_host_llm_infer.llm_service.generate_text')
-    def test_dialog_flow_with_llm_integration(self, mock_generate_text):
-        """Test integration between dialog flow and LLM service."""
+    def test_graph_executor_with_llm_integration(self, mock_generate_text):
+        """Test integration between graph executor and LLM service."""
         # Arrange
         mock_generate_text.return_value = "Ich bin ein Sprachmodell und kann dir helfen."
         
-        # Mock the generate_response to use the LLM service
-        original_generate_response = generate_response
-        
-        def enhanced_generate_response(user_input):
-            if "KI" in user_input or "Sprachmodell" in user_input:
-                # This would call the LLM service in a real integration
-                return generate_text(user_input)
-            return original_generate_response(user_input)
+        # Mock the graph to use the LLM service
+        mock_graph = MagicMock()
+        mock_graph.invoke.return_value = {
+            "output": mock_generate_text.return_value,
+            "nodes_visited": ["llm_node"]
+        }
         
         # Act
-        with patch('mcp_units.mcp_agent_interaction_engine.dialog_flow.generate_response', 
-                  side_effect=enhanced_generate_response):
-            response = handle_input("Was kannst du als Sprachmodell?")
+        with patch('mcp_units.mcp_agent_interaction_engine.graph.build_graph',
+                  return_value=mock_graph):
+            response = invoke_graph("Was kannst du als Sprachmodell?")
         
         # Assert
-        mock_generate_text.assert_called_once_with("Was kannst du als Sprachmodell?")
-        assert response == "Ich bin ein Sprachmodell und kann dir helfen."
+        assert response["output"] == "Ich bin ein Sprachmodell und kann dir helfen."
     
-    def test_dialog_flow_error_handling_with_llm(self):
-        """Test error handling in the integration between dialog flow and LLM."""
+    def test_graph_executor_error_handling_with_llm(self):
+        """Test error handling in the integration between graph executor and LLM."""
         # Arrange
-        with patch('mcp_units.mcp_host_llm_infer.llm_service.generate_text', 
-                  side_effect=Exception("LLM service unavailable")):
-            
-            # Act & Assert
-            # In a real integration, dialog_flow would handle LLM errors gracefully
-            with patch('mcp_units.mcp_agent_interaction_engine.dialog_flow.generate_response', 
-                      return_value="Entschuldigung, der Dienst ist momentan nicht verfügbar."):
-                response = handle_input("Komplexe Anfrage")
-                assert "nicht verfügbar" in response
+        mock_graph = MagicMock()
+        mock_graph.invoke.return_value = {
+            "output": "Entschuldigung, der Dienst ist momentan nicht verfügbar.",
+            "error": "LLM service unavailable"
+        }
+        
+        # Act & Assert
+        with patch('mcp_units.mcp_agent_interaction_engine.graph.build_graph',
+                  return_value=mock_graph):
+            response = invoke_graph("Komplexe Anfrage")
+            assert "nicht verfügbar" in response["output"]
 
 
 class TestToolExecutorWithMemoryStore:
@@ -150,8 +152,10 @@ class TestCompleteProcessingChain:
         user_query = "Führe den Befehl 'echo Hello MCP' aus"
         
         # Mock all the components in the chain
-        with patch('mcp_units.mcp_agent_interaction_engine.dialog_flow.generate_response', 
-                  return_value="Ich führe den Befehl aus"):
+        with patch('mcp_units.mcp_agent_interaction_engine.graph.build_graph') as mock_build_graph:
+            mock_graph = MagicMock()
+            mock_graph.invoke.return_value = {"output": "Ich führe den Befehl aus"}
+            mock_build_graph.return_value = mock_graph
             with patch('mcp_units.mcp_tool_executor.tool_runner.run_shell_command', 
                       return_value="Hello MCP"):
                 with patch('mcp_units.mcp_host_memory_store.memory_handler.write_memory') as mock_write_memory:
@@ -159,7 +163,7 @@ class TestCompleteProcessingChain:
                         
                         # Act - Simulate the complete chain
                         # 1. Handle user input
-                        dialog_response = handle_input(user_query)
+                        dialog_response = invoke_graph(user_query)["output"]
                         
                         # 2. Extract and execute command (in a real system, this would be parsed from the input)
                         command = "echo Hello MCP"

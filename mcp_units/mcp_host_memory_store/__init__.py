@@ -1,0 +1,1 @@
+# This file makes the mcp_host_memory_store directory a Python package

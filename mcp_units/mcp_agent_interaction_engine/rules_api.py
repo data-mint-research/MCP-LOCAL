@@ -18,8 +18,8 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 # Change from absolute imports to relative imports
-from runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
-from logger import log_event
+from .runtime_rules import check_policy_against_rules, get_rule_files, load_rule_file
+from .logger import log_event
 
 # Create a router for the rules API
 router = APIRouter()
