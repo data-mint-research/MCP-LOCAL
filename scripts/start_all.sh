@@ -9,7 +9,7 @@
 
 echo "🚀 Starte alle registrierten MCP-Units..."
 
-REGISTRY="MCP-LOCAL/config/mcp_register.yaml"
+REGISTRY="config/mcp_register.yaml"
 
 if [ ! -f "$REGISTRY" ]; then
   echo "❌ Registry nicht gefunden: $REGISTRY"
