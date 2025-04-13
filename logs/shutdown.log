@@ -1,12 +1,13 @@
 ╔════════════════════════════════════════════════╗
 ║ MCP-LOCAL Shutdown                              ║
-║ Started: 2025-04-13 16:55:38                      ║
+║ Started: 2025-04-13 17:13:24                      ║
 ╚════════════════════════════════════════════════╝
 ▶ Checking for Docker containers...
 Found running MCP containers:
-llm_infer
 executor
 memory_store
+interaction_engine
+llm_infer
 ▶ Stopping all MCP Docker containers...
 ✅ All MCP Docker containers have been stopped successfully.
 ▶ Checking for Python processes...
