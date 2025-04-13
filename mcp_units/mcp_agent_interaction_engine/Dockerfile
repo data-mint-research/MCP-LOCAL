@@ -1,6 +1,9 @@
 
 FROM python:3.11-slim
 
+# Install git
+RUN apt-get update && apt-get install -y git && apt-get clean
+
 WORKDIR /app
 
 COPY . /app
@@ -14,4 +17,4 @@ RUN pip install --no-cache-dir --upgrade pip \
 ENV PORT=5000
 
 # Startbefehl ist MCP-kompatibel: wird ggf. pro Unit angepasst
-CMD ["python", "main.py"]
+CMD ["python", "dialog_flow.py"]
