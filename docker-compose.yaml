@@ -1,0 +1,35 @@
+
+version: '3.8'
+
+services:
+  interaction_engine:
+    build: ./mcp_units/mcp_agent_interaction_engine
+    container_name: interaction_engine
+    ports:
+      - "8000:5000"
+    environment:
+      - PORT=5000
+
+  executor:
+    build: ./mcp_units/mcp_tool_executor
+    container_name: executor
+    ports:
+      - "8001:5000"
+    environment:
+      - PORT=5000
+
+  memory_store:
+    build: ./mcp_units/mcp_host_memory_store
+    container_name: memory_store
+    ports:
+      - "8002:5000"
+    environment:
+      - PORT=5000
+
+  llm_infer:
+    build: ./mcp_units/mcp_host_llm_infer
+    container_name: llm_infer
+    ports:
+      - "8003:5000"
+    environment:
+      - PORT=5000
