@@ -7,6 +7,18 @@
 # 🧪 Testbar: ❌
 
 from datetime import datetime
+import time
+import sys
+import os
+
+# Configure logging
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+logger = logging.getLogger('dialog_flow')
 
 DIALOG_STATE = {
     "turn_id": 0,
@@ -32,3 +44,24 @@ def generate_response(user_input):
     if "ziel" in user_input.lower():
         return "Was möchtest du mit deinem Ziel erreichen?"
     return f"Echo: {user_input}"
+
+def start_server():
+    """Start the dialog flow server and keep it running."""
+    logger.info("Starting dialog flow server...")
+    logger.info(f"Process ID: {os.getpid()}")
+    logger.info(f"Working directory: {os.getcwd()}")
+    
+    try:
+        # Keep the process running
+        while True:
+            logger.info("Dialog flow server is running...")
+            time.sleep(60)  # Sleep for 60 seconds
+    except KeyboardInterrupt:
+        logger.info("Dialog flow server shutting down...")
+    except Exception as e:
+        logger.error(f"Error in dialog flow server: {e}")
+    
+    logger.info("Dialog flow server stopped.")
+
+if __name__ == "__main__":
+    start_server()

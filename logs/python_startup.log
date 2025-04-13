@@ -1,0 +1,8 @@
+Starting in Python mode...
+🚀 Starte alle registrierten MCP-Units...
+▶️  Starte: mcp_units/mcp_agent_interaction_engine/dialog_flow.py → logs/system/dialog_flow.log
+▶️  Starte: mcp_units/mcp_tool_executor/tool_runner.py → logs/system/tool_runner.log
+▶️  Starte: mcp_units/mcp_host_memory_store/memory_handler.py → logs/system/memory_handler.log
+▶️  Starte: mcp_units/mcp_host_llm_infer/llm_service.py → logs/system/llm_service.log
+✅ Alle ausführbaren Units wurden im Hintergrund gestartet.
+📄 Logs findest du unter: logs/system/

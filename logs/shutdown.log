@@ -1,0 +1,21 @@
+╔════════════════════════════════════════════════╗
+║ MCP-LOCAL Shutdown                              ║
+║ Started: 2025-04-13 13:52:54                      ║
+╚════════════════════════════════════════════════╝
+▶ Checking for Docker containers...
+ℹ️ No MCP Docker containers are running.
+▶ Checking for Python processes...
+Found running MCP processes:
+  PID 2551: python3 mcp_units/mcp_agent_interaction_engine/dialog_flow.py
+  PID 2555: python3 mcp_units/mcp_tool_executor/tool_runner.py
+  PID 2559: python3 mcp_units/mcp_host_memory_store/memory_handler.py
+  PID 2563: python3 mcp_units/mcp_host_llm_infer/llm_service.py
+▶ Stopping all MCP Python processes...
+✖️  Beende Prozess 2551
+✖️  Beende Prozess 2555
+✖️  Beende Prozess 2559
+✖️  Beende Prozess 2563
+✅ All MCP Python processes have been stopped successfully.
+
+✅ MCP-LOCAL system shutdown complete.
+📝 Logs saved to: logs/shutdown.log

@@ -62,8 +62,20 @@ stop_docker() {
 stop_python() {
     echo "▶ Checking for Python processes..." | tee -a $LOG_FILE
     
-    # Find MCP Python processes
-    PIDS=$(ps aux | grep 'mcp_units/' | grep -v grep | awk '{print $2}')
+    # Check if we're on Windows
+    if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
+        # Windows - use PowerShell commands
+        # Find Python processes running MCP units
+        PIDS=$(powershell -Command "Get-Process -Name python | Where-Object { \$_.CommandLine -like '*mcp_units*' } | Select-Object -ExpandProperty Id" 2>/dev/null)
+        
+        if [ -z "$PIDS" ]; then
+            # Try with py command
+            PIDS=$(powershell -Command "Get-Process -Name py | Where-Object { \$_.CommandLine -like '*mcp_units*' } | Select-Object -ExpandProperty Id" 2>/dev/null)
+        fi
+    else
+        # Unix/Linux - use ps, grep, awk
+        PIDS=$(ps aux | grep 'mcp_units/' | grep -v grep | awk '{print $2}')
+    fi
     
     if [ -z "$PIDS" ]; then
         echo "ℹ️ No MCP Python processes are running." | tee -a $LOG_FILE
@@ -72,7 +84,11 @@ stop_python() {
     
     echo "Found running MCP processes:" | tee -a $LOG_FILE
     for PID in $PIDS; do
-        CMD=$(ps -p $PID -o cmd=)
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
+            CMD=$(powershell -Command "Get-Process -Id $PID | Select-Object -ExpandProperty CommandLine" 2>/dev/null)
+        else
+            CMD=$(ps -p $PID -o cmd=)
+        fi
         echo "  PID $PID: $CMD" | tee -a $LOG_FILE
     done
     
@@ -80,12 +96,25 @@ stop_python() {
     echo "▶ Stopping all MCP Python processes..." | tee -a $LOG_FILE
     for PID in $PIDS; do
         echo "✖️  Beende Prozess $PID" | tee -a $LOG_FILE
-        kill $PID
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
+            powershell -Command "Stop-Process -Id $PID -Force" 2>/dev/null
+        else
+            kill $PID
+        fi
     done
     
     # Verify all processes are stopped
     sleep 2
-    STILL_RUNNING=$(ps aux | grep 'mcp_units/' | grep -v grep | awk '{print $2}')
+    if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
+        STILL_RUNNING=$(powershell -Command "Get-Process -Name python | Where-Object { \$_.CommandLine -like '*mcp_units*' } | Select-Object -ExpandProperty Id" 2>/dev/null)
+        
+        if [ -z "$STILL_RUNNING" ]; then
+            # Try with py command
+            STILL_RUNNING=$(powershell -Command "Get-Process -Name py | Where-Object { \$_.CommandLine -like '*mcp_units*' } | Select-Object -ExpandProperty Id" 2>/dev/null)
+        fi
+    else
+        STILL_RUNNING=$(ps aux | grep 'mcp_units/' | grep -v grep | awk '{print $2}')
+    fi
     
     if [ -z "$STILL_RUNNING" ]; then
         echo "✅ All MCP Python processes have been stopped successfully." | tee -a $LOG_FILE
@@ -93,7 +122,11 @@ stop_python() {
         echo "⚠️ Some processes are still running. Attempting to force kill..." | tee -a $LOG_FILE
         for PID in $STILL_RUNNING; do
             echo "  Force killing process $PID..." | tee -a $LOG_FILE
-            kill -9 $PID
+            if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
+                powershell -Command "Stop-Process -Id $PID -Force" 2>/dev/null
+            else
+                kill -9 $PID
+            fi
         done
     fi
 }

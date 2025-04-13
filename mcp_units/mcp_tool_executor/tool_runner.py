@@ -7,6 +7,18 @@
 # 🧪 Testbar: ❌
 
 import subprocess
+import time
+import sys
+import os
+
+# Configure logging
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+logger = logging.getLogger('tool_runner')
 
 def run_shell_command(command):
     if not command.strip():
@@ -16,3 +28,24 @@ def run_shell_command(command):
         return result.strip()
     except subprocess.CalledProcessError as e:
         return f"Fehler:\n{e.output.strip()}"
+
+def start_server():
+    """Start the tool runner server and keep it running."""
+    logger.info("Starting tool runner server...")
+    logger.info(f"Process ID: {os.getpid()}")
+    logger.info(f"Working directory: {os.getcwd()}")
+    
+    try:
+        # Keep the process running
+        while True:
+            logger.info("Tool runner server is running...")
+            time.sleep(60)  # Sleep for 60 seconds
+    except KeyboardInterrupt:
+        logger.info("Tool runner server shutting down...")
+    except Exception as e:
+        logger.error(f"Error in tool runner server: {e}")
+    
+    logger.info("Tool runner server stopped.")
+
+if __name__ == "__main__":
+    start_server()
