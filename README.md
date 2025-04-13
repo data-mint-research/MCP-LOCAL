@@ -19,6 +19,9 @@ Lokale Referenzimplementierung eines modularen, MCP-konformen Agentensystems.
 - Docker Compose (erforderlich)
   - Bereits in Docker Desktop für Windows und macOS enthalten
   - [Linux Installation](https://docs.docker.com/compose/install/linux/)
+- Bash Shell (erforderlich für Windows)
+  - Enthalten in Git Bash, WSL oder Cygwin
+  - Wird benötigt, um die Skripte unter Windows auszuführen
 - Python 3.8+ (für lokale Entwicklung)
   - Empfohlene Python-Pakete:
     - docker
@@ -36,6 +39,16 @@ Lokale Referenzimplementierung eines modularen, MCP-konformen Agentensystems.
 ./start.sh --python
 ```
 
+**Wichtig für Windows-Benutzer**: Unter Windows müssen die Skripte explizit mit bash ausgeführt werden:
+
+```bash
+# Mit Docker starten (Standard)
+bash ./start.sh
+
+# Mit Python-Prozessen starten
+bash ./start.sh --python
+```
+
 Startet alle MCP-Units je nach gewähltem Modus. Logs werden gespeichert unter:
 
 ```
@@ -51,6 +64,12 @@ logs/system/*.log
 
 ```bash
 ./stop.sh
+```
+
+**Wichtig für Windows-Benutzer**: Unter Windows muss das Skript explizit mit bash ausgeführt werden:
+
+```bash
+bash ./stop.sh
 ```
 
 Stoppt alle laufenden MCP-Komponenten, unabhängig davon, ob sie mit Docker oder Python gestartet wurden. Logs werden gespeichert unter:
@@ -92,7 +111,11 @@ Detaillierte Informationen zur Testabdeckung finden Sie in der [Testabdeckungs-D
 > Beispiel: Status aller Dienste nach Start:
 >
 > ```
+> # Linux/macOS
 > ./start.sh
+>
+> # Windows
+> bash ./start.sh
 > ```
 
 ---
@@ -139,6 +162,12 @@ sudo systemctl start docker
 ### Fehlerbehebung
 - **Docker nicht installiert**: Folgen Sie den Installationslinks unter Voraussetzungen
 - **Docker nicht gestartet**: Starten Sie Docker Desktop (Windows/macOS) oder den Docker-Dienst (Linux)
+- **Skripte funktionieren nicht unter Windows**: Stellen Sie sicher, dass Sie die Skripte mit `bash` ausführen:
+  ```bash
+  # Korrekte Ausführung unter Windows
+  bash ./start.sh
+  bash ./stop.sh
+  ```
 - **Berechtigungsprobleme**: Fügen Sie Ihren Benutzer zur Docker-Gruppe hinzu (Linux)
   ```bash
   sudo usermod -aG docker $USER
